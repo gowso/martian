@@ -19,7 +19,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/google/martian"
+	"github.com/gowso/martian"
 )
 
 // NewBadFramingModifier makes a best effort to fix inconsistencies in the

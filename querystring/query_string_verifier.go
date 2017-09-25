@@ -20,9 +20,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/google/martian"
-	"github.com/google/martian/parse"
-	"github.com/google/martian/verify"
+	"github.com/gowso/martian"
+	"github.com/gowso/martian/parse"
+	"github.com/gowso/martian/verify"
 )
 
 func init() {

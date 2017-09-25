@@ -30,10 +30,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/google/martian"
-	"github.com/google/martian/log"
-	"github.com/google/martian/messageview"
-	"github.com/google/martian/proxyutil"
+	"github.com/gowso/martian"
+	"github.com/gowso/martian/log"
+	"github.com/gowso/martian/messageview"
+	"github.com/gowso/martian/proxyutil"
 )
 
 // Logger maintains request and response log entries.

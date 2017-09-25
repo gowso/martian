@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/google/martian"
-	"github.com/google/martian/proxyutil"
+	"github.com/gowso/martian"
+	"github.com/gowso/martian/proxyutil"
 )
 
 func TestMarkAPIRequestsWithHeader(t *testing.T) {

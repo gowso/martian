@@ -18,7 +18,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/google/martian/proxyutil"
+	"github.com/gowso/martian/proxyutil"
 )
 
 func TestModifierFuncs(t *testing.T) {

@@ -20,7 +20,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/google/martian/log"
+	"github.com/gowso/martian/log"
 )
 
 // Handler configures a trafficshape.Listener.

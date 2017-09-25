@@ -25,8 +25,8 @@ import (
 	"path"
 	"path/filepath"
 
-	"github.com/google/martian"
-	"github.com/google/martian/parse"
+	"github.com/gowso/martian"
+	"github.com/gowso/martian/parse"
 )
 
 // Modifier is a martian.RequestResponseModifier that routes reqeusts to rootPath

@@ -18,8 +18,8 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/google/martian"
-	"github.com/google/martian/proxyutil"
+	"github.com/gowso/martian"
+	"github.com/gowso/martian/proxyutil"
 )
 
 func TestViaModifier(t *testing.T) {

@@ -17,7 +17,7 @@ package martian
 import (
 	"flag"
 
-	mlog "github.com/google/martian/log"
+	mlog "github.com/gowso/martian/log"
 )
 
 var (

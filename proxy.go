@@ -26,9 +26,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/google/martian/log"
-	"github.com/google/martian/mitm"
-	"github.com/google/martian/proxyutil"
+	"github.com/gowso/martian/log"
+	"github.com/gowso/martian/mitm"
+	"github.com/gowso/martian/proxyutil"
 )
 
 var (

@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/google/martian"
-	"github.com/google/martian/parse"
+	"github.com/gowso/martian"
+	"github.com/gowso/martian/parse"
 )
 
 type statusModifier struct {

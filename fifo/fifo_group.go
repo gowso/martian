@@ -25,9 +25,9 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/google/martian"
-	"github.com/google/martian/parse"
-	"github.com/google/martian/verify"
+	"github.com/gowso/martian"
+	"github.com/gowso/martian/parse"
+	"github.com/gowso/martian/verify"
 )
 
 // Group is a martian.RequestResponseModifier that maintains lists of

@@ -18,9 +18,9 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/google/martian"
-	"github.com/google/martian/martiantest"
-	"github.com/google/martian/proxyutil"
+	"github.com/gowso/martian"
+	"github.com/gowso/martian/martiantest"
+	"github.com/gowso/martian/proxyutil"
 )
 
 func TestNewStack(t *testing.T) {

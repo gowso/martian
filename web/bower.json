@@ -15,7 +15,7 @@
     "ui"
   ],
   "moduleType": [],
-  "homepage": "https://github.com/google/martian",
+  "homepage": "https://github.com/gowso/martian",
   "private": true,
   "ignore": [
     "**/.*",

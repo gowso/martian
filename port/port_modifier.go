@@ -22,7 +22,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/google/martian/parse"
+	"github.com/gowso/martian/parse"
 )
 
 func init() {
