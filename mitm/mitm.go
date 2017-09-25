@@ -182,6 +182,7 @@ func (c *Config) HandshakeErrorCallback(r *http.Request, err error) {
 // the SNI extension in the TLS ClientHello.
 func (c *Config) TLS() *tls.Config {
 	return &tls.Config{
+		MaxVersion:         0x304,
 		InsecureSkipVerify: c.skipVerify,
 		GetCertificate: func(clientHello *tls.ClientHelloInfo) (*tls.Certificate, error) {
 			if clientHello.ServerName == "" {
@@ -198,6 +199,7 @@ func (c *Config) TLS() *tls.Config {
 // using SNI from the connection, or fall back to the provided hostname.
 func (c *Config) TLSForHost(hostname string) *tls.Config {
 	return &tls.Config{
+		MaxVersion:         0x304,
 		InsecureSkipVerify: c.skipVerify,
 		GetCertificate: func(clientHello *tls.ClientHelloInfo) (*tls.Certificate, error) {
 			host := clientHello.ServerName

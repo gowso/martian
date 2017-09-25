@@ -31,8 +31,15 @@ import (
 	"github.com/google/martian/proxyutil"
 )
 
-var errClose = errors.New("closing connection")
-var noop = Noop("martian")
+var (
+	errClose = errors.New("closing connection")
+	noop     = Noop("martian")
+	bufPool  = sync.Pool{
+		New: func() interface{} {
+			return new(bufio.ReadWriter)
+		},
+	}
+)
 
 func isCloseable(err error) bool {
 	if neterr, ok := err.(net.Error); ok && neterr.Timeout() {
@@ -89,7 +96,6 @@ func (p *Proxy) SetRoundTripper(rt http.RoundTripper) {
 
 	if tr, ok := p.roundTripper.(*http.Transport); ok {
 		tr.TLSNextProto = make(map[string]func(string, *tls.Conn) http.RoundTripper)
-		tr.Proxy = http.ProxyURL(p.proxyURL)
 	}
 }
 
@@ -164,6 +170,7 @@ func (p *Proxy) Serve(l net.Listener) error {
 			return nil
 		}
 
+		// TODO: Conn可能也需要设计成Pool
 		conn, err := l.Accept()
 		if err != nil {
 			if nerr, ok := err.(net.Error); ok && nerr.Temporary() {
@@ -201,7 +208,10 @@ func (p *Proxy) handleLoop(conn net.Conn) {
 	defer p.conns.Done()
 	defer conn.Close()
 
-	brw := bufio.NewReadWriter(bufio.NewReader(conn), bufio.NewWriter(conn))
+	brw := bufPool.Get().(*bufio.ReadWriter)
+	brw.Reader = bufio.NewReader(conn)
+	brw.Writer = bufio.NewWriter(conn)
+	defer bufPool.Put(brw)
 
 	s, err := newSession(conn, brw)
 	if err != nil {
@@ -354,7 +364,7 @@ func (p *Proxy) handle(ctx *Context, conn net.Conn, brw *bufio.ReadWriter) error
 		log.Debugf("martian: attempting to establish CONNECT tunnel: %s", req.URL.Host)
 		res, cconn, cerr := p.connect(req)
 		if cerr != nil {
-			log.Errorf("martian: failed to CONNECT: %v", err)
+			log.Errorf("martian: failed to CONNECT: %v", cerr)
 			res = proxyutil.NewResponse(502, nil, req)
 			proxyutil.Warning(res.Header, cerr)
 
