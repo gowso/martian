@@ -295,7 +295,7 @@ func (p *Proxy) handle(ctx *Context, conn net.Conn, brw *bufio.ReadWriter) error
 		req.URL.Host = req.Host
 	}
 
-	log.Infof("martian: received request: %s", req.URL)
+	log.Infof("martian: received request: %s %s", req.Method, req.URL)
 
 	if req.Method == "CONNECT" {
 		if err := p.reqmod.ModifyRequest(req); err != nil {
@@ -456,10 +456,12 @@ func (p *Proxy) handle(ctx *Context, conn net.Conn, brw *bufio.ReadWriter) error
 		return nil
 	}
 
+	log.Debugf("martian: reqponse code: %d", res.StatusCode)
+
 	var closing error
 	if req.Close || res.Close || p.Closing() {
 		log.Debugf("martian: received close request: %v", req.RemoteAddr)
-		res.Close = true
+		//res.Close = true
 		closing = errClose
 	}
 
